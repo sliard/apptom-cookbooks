@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-#include_recipe "java"
+include_recipe "java6::apptom"
 
 service "tomcat6" do
   action :nothing
