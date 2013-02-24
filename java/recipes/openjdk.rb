@@ -54,6 +54,8 @@ end
 if platform?("ubuntu","debian","redhat","centos","fedora","scientific","amazon")
   ruby_block "update-java-alternatives" do
     block do
+
+      Chef::Log.info("**** Start block ****")
       arch = node['kernel']['machine'] =~ /x86_64/ ? "x86_64" : "i386"
       arch = 'amd64' if arch == 'x86_64' && platform?("ubuntu") && node["platform_version"].to_f >= 12.04
       if platform?("ubuntu", "debian") and jdk_version == 6
@@ -63,7 +65,9 @@ if platform?("ubuntu","debian","redhat","centos","fedora","scientific","amazon")
           "java-6-openjdk"
         end
         java_name += "-i386" if arch == "i386" && node['platform_version'].to_f >= 12.04
+        Chef::Log.info("**** Start RUN Command **** #{java_name}")
         Chef::ShellOut.new("update-java-alternatives","-s", java_name, :returns => [0,2]).run_command
+        Chef::Log.info("**** End RUN Command ****")
       else
         # have to do this on ubuntu for version 7 because Ubuntu does
         # not currently set jdk 7 as the default jvm on installation
