@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe "apptom::java"
+include_recipe "java::apptom"
 
 case node["platform"]
 when "centos","redhat","fedora"
