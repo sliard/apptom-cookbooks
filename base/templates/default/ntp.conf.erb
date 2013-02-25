@@ -1,0 +1,8 @@
+<% @servers.each do |s| %>
+<%= "server #{s}\n" %>
+<% end %>
+
+<% unless @local_stratum == -1 %>
+server 127.127.1.0
+fudge 127.127.1.0 stratum <%= @local_stratum %>
+<% end %>
