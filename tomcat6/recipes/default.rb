@@ -17,12 +17,12 @@
 # limitations under the License.
 #
 
-include_recipe "java6::apptom"
+include_recipe "java"
 
-service "tomcat6" do
-  action :nothing
-  supports :status => true, :start => true, :stop => true, :restart => true
-end
+#service "tomcat6" do
+#  action :nothing
+#  supports :status => true, :start => true, :stop => true, :restart => true
+#end
 
 group node[:tomcat6][:user] do
 end
